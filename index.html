@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooookABike</title>
+
+
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="./index.js"></script>
+
+</head>
+
+<body>
+
+
+    <div id="page1">
+
+        <h1 id="pageTitle">Welcome to BooookABike</h1>
+
+        <br><br>
+
+        <h2>Start a new search</h2>
+        <div id="pageSection">
+            <table>
+                <tr>
+                    <thead>
+                        <h6>Choose the city</h6>
+                    </thead>
+                    <tbody>
+                        <input id="chosenCity" placeholder="Click dropdown arrow &#9660;   OR   Enter city name here"
+                            list="cities" onclick="clearInput('#chosenCity')">
+                        <datalist id="cities">
+                            <option>Calgary, AB</option>
+                            <option>Toronto, ON</option>
+                            <option>Winnipeg, MB</option>
+                        </datalist>
+                    </tbody>
+
+                </tr>
+                <br><br>
+                <tr>
+                    <thead>
+                        <h6>Choose a Date</h6>
+                    </thead>
+                    <tbody>
+                        <input type="date" id="chosenDate" onupdate="selectDate();">
+                        <br><br>
+
+                        <button id="nextButton" onclick="saveFormInfo();">Select Locations &#129154;</button>
+                    </tbody>
+                </tr>
+            </table>
+        </div>
+
+        <br><br><br>
+
+        <h2>Lookup previous booking</h2>
+        <div id="pageSection">
+
+            <table>
+                <tr>
+                    <thead>
+                        <h6>Reference number lookup</h6>
+                    </thead>
+                    <tbody>
+                        <form>
+                            <input id="refSearch" placeholder="Ex: AB1C23" type="text">
+                        </form>
+                        <br><br>
+                        <!-- Take this to the confirmation page with entered numbers -->
+
+                        <button id="nextButton" onclick="showAndHide('page1', 'page5')">Search Booking
+                            &#128269;</button>
+
+                    </tbody>
+                </tr>
+            </table>
+
+        </div>
+
+        <br><br><br>
+    </div>
+
+    <div id="page2">
+        <h1 id="pageTitle">Select Location</h1>
+
+        <h5>Edit the date</h5>
+        <input type="date" id="editDate" onupdate="editDate();">
+        <br><br>
+
+
+        <h5>Choose Location</h5>
+        <div id="pageSection">
+
+            <!-- The div element for map
+            <div id="map"></div> -->
+
+            <table id="mapTable">
+                <td>
+                    <div id="map"></div>
+                </td>
+                <td>
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'locA')">
+                            <img src="pin A.png" alt="PinA" width="30" height="40" style="float:center">
+                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'locB')">
+                            <img src="pin B.png" alt="PinA" width="30" height="40" style="float:center">
+                        </button>
+                        <button class="tablinks" onclick="openCity(event, 'locC')">
+                            <img src="pin C.png" alt="PinA" width="30" height="40" style="float:center">
+                        </button>
+                    </div>
+
+                    <div id="locA" class="tabcontent">
+                        <p><strong>Address:</strong> 123 Main St, Cityname, Province, X1X 1X1</p>
+                        <p><strong>Phone:</strong>(123) 444-5555</p>
+                        <br>
+
+                        <strong>Hours of Operation:</strong>
+                        <table class="table-striped" id="hoursOfOperation">
+                            <tr>
+                                <td style="text-align: left;">
+                                    Sunday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 6pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Monday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Tuesday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Wednesday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Thursday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Friday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Saturday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <div id="locB" class="tabcontent">
+                        <p><strong>Address:</strong> 456 Broadway, Cityname, Province, X1X 1X1</p>
+                        <p><strong>Phone:</strong>(123) 555-6666</p>
+                        <br>
+
+                        <strong>Hours of Operation:</strong>
+                        <table class="table-striped" id="hoursOfOperation">
+                            <tr>
+                                <td style="text-align: left;">
+                                    Sunday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 6pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Monday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Tuesday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Wednesday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Thursday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Friday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Saturday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <div id="locC" class="tabcontent">
+                        <p><strong>Address:</strong> 789 Downtown Ave, Cityname, Province, X1X 1X1</p>
+                        <p><strong>Phone:</strong>(123) 777-8888</p>
+                        <br>
+
+                        <strong>Hours of Operation:</strong>
+                        <table class="table-striped" id="hoursOfOperation">
+                            <tr>
+                                <td style="text-align: left;">
+                                    Sunday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 6pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Monday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Tuesday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Wednesday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Thursday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Friday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: left;">
+                                    Saturday:
+                                </td>
+                                <td style="text-align: left;">
+                                    7am - 10pm
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </td>
+            </table>
+
+            <br>
+
+            <div class="container" id="buttonRow">
+                <div class="row">
+                    <div class="col">
+                        <button onclick="showAndHide('page2', 'page1')">&#129144; Back</button>
+                    </div>
+                    <div class="col">
+                        <button id="nextButton" onclick="showAndHide('page2', 'page3')">Select Bikes &#129154;</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+    </div>
+
+
+    <div id="page3">
+
+        <h1 id="pageTitle">Product Selection</h1>
+
+        <div class="alert">
+            <span class=" closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <p><strong> ❗ NOTE THE PRICING ❗</strong></p>
+            <p>Full Day: 8am - 10pm (costs $5 extra)</p>
+            <p>Half Day: 3pm - 10pm</p>
+        </div>
+
+        <div id="pageSection">
+            <div class="row">
+
+                <!-- Shopping cart table -->
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="border-0 bg-light">
+                                    <div class="p-2 px-3 text-uppercase">Product</div>
+                                </th>
+                                <th scope="col" class="border-0 bg-light">
+                                    <div class="py-2 text-uppercase">Price</div>
+                                </th>
+                                <th scope="col" class="border-0 bg-light">
+                                    <div class="py-2 text-uppercase">Quantity</div>
+                                </th>
+                                <th scope="col" class="border-0 bg-light">
+                                    <div class="py-2 text-uppercase">length</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="border-0">
+                                    <div class="p-2">
+                                        <img src="tandem bike.jpg" alt="" width="150"
+                                            class="img-fluid rounded shadow-sm">
+                                        <!-- original code <img src="mountain bike.jpg" wivscodth="50" class="img-fluid rounded shadow-sm">--->
+                                        <div class="ml-3 d-inline-block align-middle">
+                                            <h5 class="mb-0"> <a href="#"
+                                                    class="text-dark d-inline-block align-middle">Tandem</a>
+                                            </h5><span class="text-muted font-weight-normal font-italic d-block"> A
+                                                tandem bicycle is a type of bike which enables two or more
+                                                riders to cycle together on the same bike.</span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td class="border-0 align-middle"><strong id="tandemPrice">$15.00</strong></td>
+                                <td class="border-0 align-middle">
+                                    <!-- This is the Quantity adder button code -->
+                                    <div class="quantity buttons_added">
+                                        <input type="button" value="+" class="plus">
+                                        <input type="number" step="1" min="0" max="10" name="quantity" value="1"
+                                            title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                        <input type="button" value="-" class="minus">
+                                    </div>
+                                </td>
+                                <td class="border-0 align-middle" style="width: 20%;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tandem1"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefaulat1">
+                                            Full day
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="tandem1"
+                                            id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Half day
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="p-2">
+                                        <img src="mountain bike.jpg" alt="" width="150"
+                                            class="img-fluid rounded shadow-sm">
+                                        <div class="ml-3 d-inline-block align-middle">
+                                            <h5 class="mb-0"><a href="#" class="text-dark d-inline-block">Mountain
+                                                    bike</a></h5>
+                                            <span class="text-muted font-weight-normal font-italic">Mountain
+                                                bikes are generally specialized for use on mountain trails,
+                                                single track, fire roads, and other unpaved surfaces.</span>
+                                        </div>
+                                    </div>
+                                </th>
+                                <td class="align-middle"><strong>$12.00</strong></td>
+
+
+                                <td class="border-0 align-middle">
+                                    <!-- This is the Quantity adder button code -->
+                                    <div class="quantity buttons_added">
+                                        <input type="button" value="+" class="plus">
+                                        <input type="number" step="1" min="0" max="10" name="quantity" value="1"
+                                            title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                        <input type="button" value="-" class="minus">
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mountain1"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Full day
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="mountain1"
+                                            id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Half day
+                                        </label>
+                                    </div>
+                                </td>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">
+                                    <div class="p-2">
+                                        <img src="road bike.jpg" alt="" width="150" class="img-fluid rounded shadow-sm">
+                                        <div class="ml-3 d-inline-block align-middle">
+                                            <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block">Road
+                                                    Bike</a></h5><span
+                                                class="text-muted font-weight-normal font-italic">Road bikes
+                                                are bicycles designed to take you as far and as fast as your
+                                                legs can manage on paved surfaces</span>
+                                        </div>
+                                    </div>
+                                <td class="align-middle"><strong>$10.00</strong></td>
+                                <td class="border-0 align-middle">
+                                    <!-- This is the Quantity adder button code -->
+                                    <div class="quantity buttons_added">
+                                        <input type="button" value="+" class="plus">
+                                        <input type="number" step="1" min="0" max="10" name="quantity" value="1"
+                                            title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                        <input type="button" value="-" class="minus">
+                                    </div>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="road" id="flexRadioDefault4">
+                                        <label class="form-check-label" for="flexRadioDefault4">
+                                            Full day
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="road" id="flexRadioDefault5">
+                                        <label class="form-check-label" for="flexRadioDefault5">
+                                            Half day
+                                        </label>
+                                </td>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="container" id="buttonRow">
+                <div class="row">
+                    <div class="col">
+                        <button onclick="showAndHide('page3', 'page2')">&#129144; Back</button>
+                    </div>
+                    <div class="col">
+                        <button id="nextButton" onclick="showAndHide('page3', 'page4')">Order Summary
+                            &#129154;</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
+
+    <div id="page4">
+
+        <div id="pageTitle">Order summary </div>
+
+        <div class="alert" style="background-color: rgb(236, 78, 78);">
+            <span class=" closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <p>Additional costs are calculated upon returns of bikes. Check T&C on next page.</p>
+        </div>
+        <div id="pageSection">
+            <div class="col-lg-6">
+                <div class="p-4">
+                    <ul class="list-unstyled mb-4">
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order
+                                Subtotal
+                            </strong><strong>$66.00</strong></li>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Service
+                                fees
+                            </strong><strong>$3.00</strong></li>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong
+                                class="text-muted">Tax</strong><strong>$1.00</strong></li>
+                        <li class="d-flex justify-content-between py-3 border-bottom"><strong>Total Charges</strong>
+                            <h5 class="font-weight-bold">$70.00</h5>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="container" id="buttonRow">
+                <div class="row">
+                    <div class="col">
+                        <button onclick="showAndHide('page4', 'page3')">&#129144; Back</button>
+                    </div>
+                    <div class="col">
+                        <button id="nextButton" class="btn btn-primary" data-toggle="modal"
+                            data-target="#rentalAgreementModal">Checkout
+                            &#129154;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="rentalAgreementModal" tabindex="-1" role="dialog"
+                aria-labelledby="rentalAgreementModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="rentalAgreementModalLabel">Rental Agreement</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>I accept full responsibility for the bike equipment rented and agree to pay for any
+                                damage to the Equipment and replace the Equipment at full retail value if not returned
+                                by the agreed date.</p>
+                            <p>I AM AWARE OF THE RISKS, DANGERS AND HAZARDS ASSOCIATED WITH AND THE RENTAL OF BIKING
+                                EQUIPMENT AND I FREELY ACCEPT AND FULLY ASSUME ALL SUCH RISKS, DANGERS AND HAZARDS AND
+                                THE POSSIBILITY OF PERSONAL
+                                INJURY, DEATH, PROPERTY DAMAGE OR LOSS RESULTING
+                                THEREFROM.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Disagree</button>
+                            <button type="button" class="btn btn-primary"
+                                onclick="showAndHide('page4', 'page5')">Agree</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="page5">
+        <div id="pageTitle">Checkout</div>
+
+        <p></p>
+
+
+        <div class="wp-block-group alignfull has-border-color" style="border-color:#0b0c0f;border-width:20px">
+            <div class="wp-block-media-text alignfull is-stacked-on-mobile has-white-background-color has-text-color has-background"
+                style="color:#222222;grid-template-columns:49% auto">
+                <figure class="wp-block-media-text__media"><img
+                        src="https://wcptutorialswebsite991063787.files.wordpress.com/2022/04/barcode.png?w=335" alt=""
+                        class="wp-image-37 size-full" /></figure>
+                <div class="wp-block-media-text__content">
+                    <div class="wp-block-group"
+                        style="padding-top:20px;padding-right:0px;padding-bottom:20px;padding-left:0px">
+                        <div class="wp-block-group">
+                            <h2 class="has-text-align-center" id="more-than-words"
+                                style="font-size:50px;font-style:normal;font-weight:600">Thank You For Purchase!</h2>
+
+
+
+                            <hr class="wp-block-separator has-text-color has-css-opacity has-background"
+                                style="background-color:#222222;color:#222222" />
+
+
+
+                            <div class="wp-block-group" style="margin-top:30px;margin-bottom:30px">
+                                <p class="has-text-align-center">A seven-digit code has been sent to your mail box and
+                                    your phone.</p>
+
+
+
+                                <p class="has-text-align-center">Scane this QR code at Kiosk to unlock your bike(s).</p>
+
+
+
+                                <div class="wp-block-buttons">
+                                    <div class="wp-block-button is-style-fill"><a
+                                            class="wp-block-button__link has-foreground-color has-cyan-bluish-gray-background-color has-text-color has-background"
+                                            href="#one">Back to Homepage</a></div>
+
+                                    <ul style="margin-bottom: 100vh;">
+                                        <li><a href="#7">Back a page</a></li>
+                                    </ul>
+                                </div>
+                                <div class="container" id="buttonRow">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button onclick="showAndHide('page5', 'page4')">&#129144; Back</button>
+                                        </div>
+                                        <div class="col">
+                                            <button onclick="showAndHide('page5', 'page6')">Checkout
+                                                &#129154;</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Loading Google maps Javascript API -->
+                            <script
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8p8dLUzmoGzgYOakkEw5K6e8Y8kS9bb8&callback=initMap&v=weekly"
+                                async></script>
+
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+                            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                                crossorigin="anonymous"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+                                integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+                                crossorigin="anonymous"></script>
+                            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+                                integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+                                crossorigin="anonymous"></script>
+</body>
+
+</html>

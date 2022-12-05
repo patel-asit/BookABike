@@ -1,0 +1,166 @@
+html {
+    max-width: 960px;
+    margin: auto;
+    min-width: 400px;
+}
+
+body {
+    /* background-image: url(background.gif); */
+    /* background-repeat: no-repeat;
+
+    background-attachment: fixed;
+    background-size: 100%; */
+    background-position: center;
+    margin: auto;
+}
+
+/* Hide extra pages on load, they can be toggled to show using JS */
+#page2,
+#page3,
+#page4,
+#page5,
+#page6,
+#page7,
+#page8 {
+    display: none;
+}
+
+
+form {
+    overflow: inherit;
+    border-radius: 10px !important;
+
+}
+
+#pageSection {
+    border-style: solid !important;
+    border-width: 2px;
+    border-color: gray;
+    border-radius: 10px !important;
+    padding: 25px;
+    /* padding-bottom: 80px; */
+}
+
+/* #buttonRow {
+    /* padding: none;
+    float: right; */
+/*margin-right: auto; */
+
+
+/* #backButton {
+    float: left;
+    width: 50rem;
+} */
+
+#nextButton {
+    position: relative;
+    float: right;
+}
+
+#mapTable td:not(#mapTable td td) {
+    height: 400px;
+}
+
+/* Set the size of the div element that contains the map */
+#map {
+    height: 425px;
+    /* The height is 400 pixels */
+    width: 40vw;
+    /* The width is the width of the web page */
+}
+
+#pageTitle {
+    margin-top: 50px;
+    font-size: 50px;
+    text-align: center !important;
+}
+
+input {
+    border-radius: 10px !important;
+
+    width: 100%;
+    height: 5vh;
+}
+
+button {
+    border-radius: 10px !important;
+    padding: 10px;
+}
+
+/* Justins changes */
+
+
+/* Tabs */
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    float: top;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+#hoursOfOperation tr:nth-child(odd) {
+    background-color: #f2f2f2;
+
+}
+
+#hoursOfOperation {
+    margin-top: 10px;
+}
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: rgb(182, 141, 7);
+    /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
